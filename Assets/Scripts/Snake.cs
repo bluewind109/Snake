@@ -53,11 +53,6 @@ public class Snake : MonoBehaviour
         segments.Add(segment.transform);
     }
 
-    private Vector2 ContstraintDistance(Vector2 point, Vector2 anchor, float distance)
-    {
-        return (point - anchor).normalized * distance + anchor;
-    }
-
     private void ResetState()
     {
         for (int i = 1; i < segments.Count; i++)
@@ -100,21 +95,6 @@ public class Snake : MonoBehaviour
             {
                 segments[i].position = segments[i - 1].position;
             }
-
-            // for (int i = 1; i < segments.Count; i++)
-            // {
-            //     var newPos = ContstraintDistance(
-            //         segments[i].transform.position,
-            //         segments[i - 1].transform.position,
-            //         1f
-            //     );
-            //     newPos = new Vector3(
-            //         Mathf.Round(newPos.x),
-            //         Mathf.Round(newPos.y),
-            //         0f
-            //     );
-            //     segments[i].transform.position = newPos;
-            // }
 
             this.transform.position = new Vector3(
                 Mathf.Round(this.transform.position.x) + direction.x,
