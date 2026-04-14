@@ -130,7 +130,8 @@ public class Snake : MonoBehaviour
         {
             Grow();
         }
-        else if (other.gameObject.GetComponent<Wall>() != null)
+        else if (other.gameObject.GetComponent<Wall>() != null || 
+            other.gameObject.GetComponent<SnakeSegment>() != null)
         {
             ResetState();
         }
