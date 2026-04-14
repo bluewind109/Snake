@@ -5,13 +5,18 @@ public class Snake : MonoBehaviour
 {
     public static Snake Instance { get; private set; }
 
-    private Vector2 direction = Vector2.right;
+    public Vector2 direction = Vector2.right;
     private List<Transform> segments = new List<Transform>();
 
     private float moveTimer;
     public float speed = 100f;
     public float speedIncrease = 0.1f;
     public GameObject segmentPrefab;
+
+    public bool IsMovingRight => direction == Vector2.right;
+    public bool IsMovingLeft => direction == Vector2.left;
+    public bool IsMovingUp => direction == Vector2.up;
+    public bool IsMovingDown => direction == Vector2.down;
 
     void Awake()
     {
@@ -67,22 +72,14 @@ public class Snake : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
+        if (!IsMovingDown && Input.GetKeyDown(KeyCode.W))
             direction = Vector2.up;
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
+        else if (!IsMovingUp && Input.GetKeyDown(KeyCode.S))
             direction = Vector2.down;
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
+        else if (!IsMovingRight && Input.GetKeyDown(KeyCode.A))
             direction = Vector2.left;
-        }
-        else if (Input.GetKeyDown(KeyCode.D))
-        {
+        else if (!IsMovingLeft && Input.GetKeyDown(KeyCode.D))
             direction = Vector2.right;
-        }
     }
 
     void FixedUpdate()
